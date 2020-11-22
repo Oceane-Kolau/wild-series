@@ -1,0 +1,12 @@
+@import "~bootstrap/scss/bootstrap";
+$theme-colors: (
+    "light": white,
+    "dark": black
+);
+$light:white;
+$dark:black;
+$body-color: $light;
+$body-bg: $black;
+$navbar-dark-color:white;
+
+@import "bootstrap";
