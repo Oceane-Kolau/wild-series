@@ -1,0 +1,19 @@
+{% include 'base.html.twig' %}
+
+<body>
+   <div class="container m-5">
+      <h1>Discover all our categories</h1>
+      <div class="row">
+         {% for category in categories %}
+         <ul class="list-group m-2 p-2">
+            <li class="list-group-item list-group-item-light">{{category.name}}</li>
+            <div class="text-right">
+               <a href="{{ path("category_show", { categoryName: category.name }) }}" class="btn more-details">Check programs of this category ></a>
+            </div>
+         </ul>
+         {% endfor %}
+      </div>
+   </div>
+</body> 
+
+</html>

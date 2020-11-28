@@ -10,3 +10,11 @@ $body-bg: $black;
 $navbar-dark-color:white;
 
 @import "bootstrap";
+
+.film-color {
+    color: red;
+}
+
+.more-details:hover{
+    color: red;
+}
