@@ -9,4 +9,76 @@ $body-color: $light;
 $body-bg: $black;
 $navbar-dark-color:white;
 
+.thumbnail {
+    position: relative;
+}
+
+.caption {
+    position: absolute;
+    top: 5%;
+    left: 0;
+    width: 100%;
+}
+
 @import "bootstrap";
+
+:root{
+    --dark_brown: #3D0B0E;
+    --black_grey: #0A0A0A;
+    --gold: #C9A360;
+    --wine: #511014;
+  }
+
+* {
+    font-family: 'Lato', sans-serif;
+    margin: 0px;
+    font-size: 18px;
+}
+
+.branding {
+    font-family: 'GFS Didot', serif;
+    font-size: 30px;
+    letter-spacing: 7px;
+    line-height: 40px;
+    text-transform: uppercase;
+}
+
+.baseline {
+    font-family: 'GFS Didot', serif;
+    font-size: 60px;
+    line-height: 50px;
+    letter-spacing: 3px;
+
+}
+
+.film-color {
+   color: red;
+}
+
+.nav-size {
+    color:white;
+}
+
+.container-move {
+    position: relative;
+    padding-top: 10px;
+    padding-bottom: 10px; 
+}
+
+.box-program {
+    padding: 10px 0 10px 0;
+    display: flex;
+    height: 300px;
+    width: 300px;
+    margin-right: 40px;
+    transition: 0.2s;
+}
+
+.scroll-card {
+    display: flex;
+    overflow-x: scroll;
+}
+
+::-webkit-scrollbar{
+    display: none;
+  }

@@ -1,5 +1,34 @@
 {% include 'base.html.twig' %}
+
 <body>
-   <h1>Program {{id }}</h1>
+   <h1>Program {{ program.id }}</h1>
+   <div class="container ">
+      <div class="row">
+         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 pt-3">
+            <div class="card-group">
+               <img src="{{program.poster}}" class="card-img-top" alt="...">
+               <div class="card-body">
+                  <h5 class="card-title">{{program.title}}</h5>
+                  <p class="card-text text-center"><i class="fas fa-film film-color"></i> {{program.category.name}}</p>
+                  <p class="card-text text-left">{{program.summary}}</p>
+               </div>
+            </div>
+            {% for season in seasons %}
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 pt-3">
+               <ul class="list-group m-2 p-2">
+                  <li class="list-group-item list-group-item-light"> Season {{season.number}} - {{season.year}}</li>
+                  <div class="text-right">
+                     <a href="{{ path("program_season_show", {'programId': program.id, 'seasonId': season.id}) }}" class="btn more-details">Check all episodes ></a>
+                  </div>
+               </ul>
+            </div>
+            {% endfor %}
+         </div>
+      </div>
+      <a href="{{ path('program_index') }}">
+         Retour à la liste des programmes
+      </a>
+   </div>
 </body>
+
 </html>

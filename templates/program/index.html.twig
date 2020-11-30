@@ -1,5 +1,23 @@
 {% include 'base.html.twig' %}
 <body>
-   <h1>{{ website }} index</h1>
+   <h1>Discover all our programs</h1>
+   <div class="container m-2">
+         <div class="row">
+            {% for program in programs %}
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-2 col-xs-1 text-center mx-auto pt-3">
+            <div class="card-group">
+               <img src="{{program.poster}}" class="card-img-top img-fluid" alt="...">
+               <div class="card-body">
+                  <h5 class="card-title">{{program.title}}</h5>
+                  <p class="card-text text-center"><i class="fas fa-film film-color"></i>  {{program.category.name}}</p>
+                  <div class="text-right">
+                     <a href="{{ path("program_show", { id: program.id }) }}" class="btn more-details">More details ></a>
+                  </div>
+               </div>
+            </div>
+         </div>
+            {% endfor %}
+      </div>
+   </div>
 </body>
 </html>
