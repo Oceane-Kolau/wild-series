@@ -9,7 +9,8 @@
          <p>{{ season.description }}</p>
          <h3>Liste des épisodes :</h3>
          {% for episode in episodes %}
-         <p>Episode {{episode.number}} : {{episode.title}}</p>
+         <p color-episod>Episode {{episode.number}} : {{episode.title}} <br></p>
+         <p>{{episode.synopsis}}</p>
          {% endfor %}
          <a href="{{ path("program_show", { id: program.id }) }}">
             Retour à la liste des saisons

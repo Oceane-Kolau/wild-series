@@ -1,12 +1,13 @@
 @import "~bootstrap/scss/bootstrap";
+
 $theme-colors: (
     "light": white,
-    "dark": black
+    "dark": #0A0A0A
 );
 $light:white;
-$dark:black;
+$dark:#0A0A0A;
 $body-color: $light;
-$body-bg: $black;
+$body-bg: #0A0A0A;
 $navbar-dark-color:white;
 
 .thumbnail {
@@ -21,7 +22,6 @@ $navbar-dark-color:white;
 }
 
 @import "bootstrap";
-
 :root{
     --dark_brown: #3D0B0E;
     --black_grey: #0A0A0A;
@@ -52,7 +52,7 @@ $navbar-dark-color:white;
 }
 
 .film-color {
-   color: red;
+   color:var(--wine);
 }
 
 .nav-size {
@@ -79,6 +79,70 @@ $navbar-dark-color:white;
     overflow-x: scroll;
 }
 
-::-webkit-scrollbar{
-    display: none;
-  }
+.scroll-card:hover {
+    filter: brightness(50%);
+}
+
+.link-effect a {
+    filter: brightness(50%);
+    color: white;
+    text-decoration: none;
+}
+
+.info-scroll
+{
+    font-size: 14px;
+    color:var(--dark_brown);
+}
+
+.list-group-item-color {
+    background-color: var(--gold);
+}
+
+.categories-color a{
+    color: white;
+    text-decoration: none;
+}
+
+.categories-color a :hover{
+    font-weight: 400;
+    font-size: 20px;
+}
+
+h1 {
+    font-size: 25px;
+}
+
+.btn-color {
+    background-color: var(--gold);
+    color: white;
+}
+
+.btn-color:hover {
+    border: 2px solid var(--gold);
+    color: white;
+    background-color: transparent;
+}
+
+.more-details {
+    color: var(--wine);
+}
+
+.more-details:hover {
+    color: var(--wine);
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.box-size img {
+    height: 300px;
+    width: 300px;
+}
+
+.media-title {
+    color: var(--wine);
+}
+
+.hr-color {
+    background-color: var(--wine);
+}

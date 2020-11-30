@@ -1,0 +1,31 @@
+{% include 'base.html.twig' %}
+
+<body>
+    <div class="container m-2">
+        <h1 class="text-center m-5"> <i class="fas fa-film film-color"></i> Selection of programs available in the {{ category.name }} category
+        </h1>
+        <div class="row">
+                {% for program in programs %}
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 pt-3 ">
+                        <hr class="hr-color">
+                        <img class="align-self-start mr-3 img-fluid" src="{{program.poster}}" alt="{{ program.title }}"/>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 pt-3 ">
+                        <div>
+                            <h5 class="media-title">{{program.title}}<hr class="hr-color"></h5>
+                            <p>{{program.summary}}</p>
+                        </div>
+                    </div>
+                
+                {% else %}
+                Aucune série trouvée.
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <a href="{{ path('category_index') }}"><button class="btn btn-color">Retour à la liste des categories
+        </button></a>
+    </div>
+</body>
+
+</html>

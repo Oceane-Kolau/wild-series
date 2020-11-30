@@ -1,4 +1,5 @@
 {% include 'base.html.twig' %}
+
 {% block body %}
 <div class="container-fluid mt-5 pt-3">
    <div class="row">
@@ -6,7 +7,7 @@
          <div class=" thumbnail text-center">
             <img src="{{ asset('build/banner-wild-series.png') }}" class="img-fluid" alt="wild-series">
             <div class="caption">
-               <h1 class="baseline">Anytime<br>Everywhere      </h1>
+               <h1 class="baseline">Anytime<br>Everywhere</h1>
             </div>
          </div>
       </div>
@@ -18,12 +19,15 @@
       {% for program in programs %}
       <div class="text-center p-5">
          <div class="scroll-card" style="width: 15rem;">
-            <img src="{{program.poster}}" class="box-program" alt="...">
-            <div class="card-body">
-               <h5 class="card-title">{{program.title}}</h5>
-               <p class="card-text text-center"><i class="fas fa-film film-color"></i>  {{program.category.name}}</p>
+            <a href="{{ path("program_show", { id: program.id }) }}">
+            <img src="{{program.poster}}" class="box-program" alt="..."></a>
+            <div class="card-body link-effect">
+               <a href="{{ path("program_show", { id: program.id }) }}">
+               <p class="card-text text-center"><i class="fas fa-film film-color"></i>  {{program.category.name}}</p><br><br>
+               <h5 class="card-title">{{program.title}}</h5></a>
             </div>
          </div>
+         <p class="ml-1 pl-4 info-scroll"><i class="fas fa-arrows-alt-h"></i>  Scroll right on images</p>
       </div>
       {% endfor %}
    </div>
