@@ -2,9 +2,11 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Wild Series{% endblock %}</title>
         {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=GFS+Didot&family=Lato:wght@100;300;400&display=swap" rel="stylesheet">      
         {% endblock %}
     </head>
     <body>
@@ -14,6 +16,7 @@
         {% block body %}{% endblock %}
         {% block javascripts %}
            {{ encore_entry_script_tags('app') }}
+           <script src="https://kit.fontawesome.com/9d33e912d5.js" crossorigin="anonymous"></script>
         {% endblock %}
     </body>
 </html>

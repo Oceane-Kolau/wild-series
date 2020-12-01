@@ -1,4 +1,5 @@
 @import "~bootstrap/scss/bootstrap";
+
 $theme-colors: (
     "light": white,
     "dark": black
@@ -6,7 +7,155 @@ $theme-colors: (
 $light:white;
 $dark:black;
 $body-color: $light;
-$body-bg: $black;
+$body-bg: black;
 $navbar-dark-color:white;
 
+.thumbnail {
+    position: relative;
+}
+
+.caption {
+    position: absolute;
+    top: 5%;
+    left: 0;
+    width: 100%;
+}
+
 @import "bootstrap";
+:root{
+    --dark_brown: #3D0B0E;
+    --black_grey: #0A0A0A;
+    --gold: #C9A360;
+    --wine: #511014;
+  }
+
+* {
+    font-family: 'Lato', sans-serif;
+    margin: 0px;
+    font-size: 18px;
+}
+
+.branding {
+    font-family: 'GFS Didot', serif;
+    font-size: 30px;
+    letter-spacing: 7px;
+    line-height: 40px;
+    text-transform: uppercase;
+}
+
+.baseline {
+    font-family: 'GFS Didot', serif;
+    font-size: 60px;
+    line-height: 50px;
+    letter-spacing: 3px;
+
+}
+
+.film-color {
+   color:var(--wine);
+}
+
+.container-move {
+    position: relative;
+    padding-top: 10px;
+    padding-bottom: 10px; 
+}
+
+.box-program {
+    padding: 10px 0 10px 0;
+    display: flex;
+    height: 300px;
+    width: 300px;
+    margin-right: 40px;
+    transition: 0.2s;
+}
+
+.scroll-card {
+    display: flex;
+    overflow-x: scroll;
+}
+
+.scroll-card:hover {
+    filter: brightness(50%);
+}
+
+.link-effect a {
+    filter: brightness(50%);
+    color: white;
+    text-decoration: none;
+}
+
+.info-scroll
+{
+    font-size: 14px;
+    color:var(--dark_brown);
+}
+
+.list-group-item-color {
+    background-color: var(--gold);
+}
+
+.categories-color a{
+    color: white;
+    text-decoration: none;
+}
+
+.categories-color a :hover{
+    font-weight: 400;
+    font-size: 20px;
+}
+
+h1 {
+    font-size: 25px;
+}
+
+.btn-color {
+    background-color: var(--gold);
+    color: white;
+}
+
+.btn-color:hover {
+    border: 2px solid var(--gold);
+    color: white;
+    background-color: transparent;
+}
+
+.more-details {
+    color: var(--wine);
+}
+
+.more-details:hover {
+    color: var(--wine);
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.box-size img {
+    height: 300px;
+    width: 300px;
+}
+
+.media-title {
+    color: var(--wine);
+}
+
+.hr-color {
+    background-color: var(--wine);
+}
+.nav-size {
+    color:white;
+}
+
+.nav-size:hover {
+    color:var(--wine);
+    text-decoration: none;
+    font-size: 22px;
+}
+
+.h1-style {
+    text-transform: uppercase;
+}
+
+.color-episod {
+    color: var(--gold);
+}
