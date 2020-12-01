@@ -2,12 +2,12 @@
 
 $theme-colors: (
     "light": white,
-    "dark": #0A0A0A
+    "dark": black
 );
 $light:white;
-$dark:#0A0A0A;
+$dark:black;
 $body-color: $light;
-$body-bg: #0A0A0A;
+$body-bg: black;
 $navbar-dark-color:white;
 
 .thumbnail {
@@ -53,10 +53,6 @@ $navbar-dark-color:white;
 
 .film-color {
    color:var(--wine);
-}
-
-.nav-size {
-    color:white;
 }
 
 .container-move {
@@ -145,4 +141,21 @@ h1 {
 
 .hr-color {
     background-color: var(--wine);
+}
+.nav-size {
+    color:white;
+}
+
+.nav-size:hover {
+    color:var(--wine);
+    text-decoration: none;
+    font-size: 22px;
+}
+
+.h1-style {
+    text-transform: uppercase;
+}
+
+.color-episod {
+    color: var(--gold);
 }

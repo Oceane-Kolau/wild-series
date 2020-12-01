@@ -1,33 +1,33 @@
 {% include 'base.html.twig' %}
 
 <body>
-   <h1>Program {{ program.id }}</h1>
-   <div class="container ">
+   <div class="container m-2 mt-5">
+      <h1 class="text-center h1-style">{{program.title}}
+         <hr class="hr-color">
+      </h1>
+      <h5 class="card-text text-center"><i class="fas fa-film film-color"></i> {{program.category.name}}</h5>
       <div class="row">
-         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 pt-3">
-            <div class="card-group">
-               <img src="{{program.poster}}" class="card-img-top" alt="...">
-               <div class="card-body">
-                  <h5 class="card-title">{{program.title}}</h5>
-                  <p class="card-text text-center"><i class="fas fa-film film-color"></i> {{program.category.name}}</p>
-                  <p class="card-text text-left">{{program.summary}}</p>
-               </div>
+         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 pt-3 ">
+            <hr class="hr-color">
+            <img class="align-self-start mr-3 img-fluid" src="{{program.poster}}" alt="{{ program.title }}" />
+         </div>
+         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 pt-3 pt-5">
+            <div>
+               <p class="card-text text-left">{{program.summary}}</p>
+               {% for season in seasons %}
+               <ul class="list-group m-2 p-2 categories-color">
+                  <a href="{{ path("program_season_show", {'programId': program.id, 'seasonId': season.id}) }}">
+                     <li class="list-group-item list-group-item-color"> Season {{season.number}} - {{season.year}}</li>
+                  </a>
+                  </ul>
+               {% endfor %}
             </div>
-            {% for season in seasons %}
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 pt-3">
-               <ul class="list-group m-2 p-2">
-                  <li class="list-group-item list-group-item-light"> Season {{season.number}} - {{season.year}}</li>
-                  <div class="text-right">
-                     <a href="{{ path("program_season_show", {'programId': program.id, 'seasonId': season.id}) }}" class="btn more-details">Check all episodes ></a>
-                  </div>
-               </ul>
-            </div>
-            {% endfor %}
          </div>
       </div>
-      <a href="{{ path('program_index') }}">
-         Retour à la liste des programmes
-      </a>
+      <div class="mt-5">
+         <a href="{{ path('program_index') }}"><button class="btn btn-color">Retour à la liste des programmes
+            </button></a>
+      </div>
    </div>
 </body>
 

@@ -2,7 +2,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-4">
     <a class="navbar-brand branding ml-5" href="/">Wild series</a>
     <a class="nav-item nav-size pl-4" href="{{ path('program_index')}}">Programs</a>
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <a class="nav-item nav-size pl-4" href="{{ path('category_index')}}">Categories</a>
+    {# <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle pl-4" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -11,12 +12,12 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     
-                    <a class="dropdown-item" href="/categories"></a>
+                    <a class="dropdown-item" href="/categories">Demo</a>
                     <div class="dropdown-divider"></div>
                     
                 </div>
             </li>
         </ul>
-    </div>
+    </div> #}
 </nav>
 {% endblock %}

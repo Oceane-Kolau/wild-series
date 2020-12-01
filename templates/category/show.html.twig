@@ -1,9 +1,8 @@
 {% include 'base.html.twig' %}
-
 <body>
     <div class="container m-2">
-        <h1 class="text-center m-5"> <i class="fas fa-film film-color"></i> Selection of programs available in the {{ category.name }} category
-        </h1>
+        <h2 class="text-center m-5"> Selection of programs available <br>in the {{ category.name }} category
+        </h2>
         <div class="row">
                 {% for program in programs %}
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 pt-3 ">
@@ -12,7 +11,7 @@
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 pt-3 ">
                         <div>
-                            <h5 class="media-title">{{program.title}}<hr class="hr-color"></h5>
+                            <h2 class="media-title">{{program.title}}<hr class="hr-color"></h2>
                             <p>{{program.summary}}</p>
                         </div>
                     </div>
@@ -27,5 +26,4 @@
         </button></a>
     </div>
 </body>
-
 </html>
