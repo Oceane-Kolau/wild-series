@@ -16,7 +16,7 @@
                <p class="card-text text-left">{{program.summary}}</p>
                {% for season in seasons %}
                <ul class="list-group m-2 p-2 categories-color">
-                  <a href="{{ path("program_season_show", {'programId': program.id, 'seasonId': season.id}) }}">
+                  <a href="{{ path("program_season_show", {'program_id': program.id, 'season_id': season.id}) }}">
                      <li class="list-group-item list-group-item-color"> Season {{season.number}} - {{season.year}}</li>
                   </a>
                   </ul>
