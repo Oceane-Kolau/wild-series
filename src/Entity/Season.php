@@ -49,7 +49,7 @@ class Season
     {
         $this->episodes = new ArrayCollection();
     }
-
+    
     public function getId(): ?int
     {
         return $this->id;
