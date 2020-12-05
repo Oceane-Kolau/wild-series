@@ -1,25 +1,35 @@
 {% include 'base.html.twig' %}
 
 <body>
-<div class="container mt-5 mx-auto">
-   <h2 class="text-center">Saison {{ season.number }} - {{ program.title}}<hr class="hr-color"></h2>
-   <div class="media">
-      <img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
-      <div class="media-body">
-         <p>{{ season.description }}</p>
-         {% for episode in episodes %}
-         <p><span class="color-episod">Episode {{episode.number}}</span> <br> {{episode.title}} <br></p>
-         <p>{{episode.synopsis}}</p>
-         <a href="{{ path("program_episode_show", {'program_id': program.id, 'season_id': season.id, 'episode_id': episode.id}) }}"><button class="btn btn-color mb-5">Voir cet épisode
-         </button></a>
-         {% endfor %}
+   <div class="container mt-5 mx-auto">
+      <h2 class="text-center">Saison {{ season.number }} - {{ program.title}}
+         <hr class="hr-color">
+      </h2>
+      <div class="row">
+         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 pt-3 ">
+            <hr class="hr-color">
+            <img class="align-self-start mr-3 img-fluid" src="{{program.poster}}" alt="{{ program.title }} poster">
+         </div>
+         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 pt-3 pt-5">
+            <div>
+               <p class="card-text text-left">{{ season.description }}</p>
+               {% for episode in episodes %}
+               <p><span class="color-episod">Episode {{episode.number}}</span> <br> {{episode.title}} <br></p>
+               <p>{{episode.synopsis}}</p>
+               <a
+                  href="{{ path("program_episode_show", {'program_id': program.id, 'season_id': season.id, 'episode_id': episode.id}) }}"><button
+                     class="btn btn-color mb-5">Voir cet épisode
+                  </button></a>
+               {% endfor %}
+            </div>
+         </div>
+      </div>
+      <div class="mt-5">
+         <a href="{{ path("program_show", { id: program.id }) }}"><button class="btn btn-color">Retour à la liste des
+               saisons
+            </button></a>
       </div>
    </div>
-   <div class="mt-5">
-      <a href="{{ path("program_show", { id: program.id }) }}"><button class="btn btn-color">Retour à la liste des saisons
-         </button></a>
-   </div>
-</div>
 </body>
 
 </html>
