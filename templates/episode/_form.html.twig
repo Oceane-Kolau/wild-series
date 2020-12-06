@@ -1,4 +1,29 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<div class="container m-5 p-5">
+    {{ form_start(form) }}
+    <div class="form-group row">
+        <label for="title" class="col-sm-2 col-form-label">{{ form_label(form.title) }}</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.title) }}
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="number" class="col-sm-2 col-form-label">{{ form_label(form.number) }}</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.number) }}
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="season" class="col-sm-2 col-form-label">{{ form_label(form.season) }}</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.season) }}
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="poster" class="col-sm-2 col-form-label">{{ form_label(form.synopsis) }}</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.synopsis) }}
+        </div>
+    </div>
+    <button class="btn btn-color">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+</div>

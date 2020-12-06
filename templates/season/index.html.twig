@@ -3,13 +3,21 @@
 {% block title %}Season index{% endblock %}
 
 {% block body %}
-    <h1>Season index</h1>
+<div class="container m-4">
+    <div class="row">
+        <div class="col-lg-9 col-md-8 col-sm-6 col-xs-6">
+            <h1>Season index</h1>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 pb-2">
+            <a href="{{ path('season_new') }}"><button class="btn btn-color ml-5">Create new season</button></a> 
+        </div>
+    </div>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Number</th>
+                <th>Program</th>
+                <th>Season</th>
                 <th>Year</th>
                 <th>Description</th>
                 <th>actions</th>
@@ -18,13 +26,13 @@
         <tbody>
         {% for season in seasons %}
             <tr>
-                <td>{{ season.id }}</td>
+                <td>{{ season.program.title }}</td>
                 <td>{{ season.number }}</td>
                 <td>{{ season.year }}</td>
                 <td>{{ season.description }}</td>
                 <td>
-                    <a href="{{ path('season_show', {'id': season.id}) }}">show</a>
-                    <a href="{{ path('season_edit', {'id': season.id}) }}">edit</a>
+                    <a href="{{ path('episode_show', {'id': season.id}) }}"><p><i class="fas fa-eye icon-color"></i></p></a>
+                    <a href="{{ path('episode_edit', {'id': season.id}) }}"><p><i class="far fa-edit icon-color"></i></p></a>
                 </td>
             </tr>
         {% else %}
@@ -34,6 +42,5 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('season_new') }}">Create new</a>
+</div>
 {% endblock %}

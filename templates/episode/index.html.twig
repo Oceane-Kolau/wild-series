@@ -3,13 +3,21 @@
 {% block title %}Episode index{% endblock %}
 
 {% block body %}
-    <h1>Episode index</h1>
+<div class="container m-4">
+    <div class="row">
+        <div class="col-lg-9 col-md-8 col-sm-6 col-xs-6">
+            <h1>Episode index</h1>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 pb-2">
+            <a href="{{ path('episode_new') }}"><button class="btn btn-color ml-5">Create new episode</button></a> 
+        </div>
+    </div>
 
-    <table class="table">
+    <table class="table table-responsive{-sm|-md|-lg|-xl}">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Title</th>
+                <th>Season</th>
                 <th>Number</th>
                 <th>Synopsis</th>
                 <th>actions</th>
@@ -18,13 +26,13 @@
         <tbody>
         {% for episode in episodes %}
             <tr>
-                <td>{{ episode.id }}</td>
                 <td>{{ episode.title }}</td>
+                <td>{{ episode.season.number }}</td>
                 <td>{{ episode.number }}</td>
                 <td>{{ episode.synopsis }}</td>
                 <td>
-                    <a href="{{ path('episode_show', {'id': episode.id}) }}">show</a>
-                    <a href="{{ path('episode_edit', {'id': episode.id}) }}">edit</a>
+                    <a href="{{ path('episode_show', {'id': episode.id}) }}"><p><i class="fas fa-eye icon-color"></i></p></a>
+                    <a href="{{ path('episode_edit', {'id': episode.id}) }}"><p><i class="far fa-edit icon-color"></i></p></a>
                 </td>
             </tr>
         {% else %}
@@ -34,6 +42,5 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('episode_new') }}">Create new</a>
+</div>
 {% endblock %}

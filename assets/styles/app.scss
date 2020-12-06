@@ -144,6 +144,7 @@ h1 {
 }
 .nav-size {
     color:white;
+    text-decoration:none;
 }
 
 .nav-size:hover {
@@ -157,5 +158,27 @@ h1 {
 }
 
 .color-episod {
+    color: var(--gold);
+}
+
+td {
+    color:white;
+}
+
+tr {
+    color: white;
+}
+
+.back{
+    background-color: transparent;
+    color:white;
+    border: 2px solid var(--gold);
+}
+
+.back:hover {
+    background-color:var(--gold);
+}
+
+.icon-color {
     color: var(--gold);
 }

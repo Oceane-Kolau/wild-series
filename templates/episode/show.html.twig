@@ -3,6 +3,7 @@
 {% block title %}Episode{% endblock %}
 
 {% block body %}
+<div class="container m-4">
     <h1>Episode</h1>
 
     <table class="table">
@@ -25,10 +26,12 @@
             </tr>
         </tbody>
     </table>
-
-    <a href="{{ path('episode_index') }}">back to list</a>
-
-    <a href="{{ path('episode_edit', {'id': episode.id}) }}">edit</a>
-
-    {{ include('episode/_delete_form.html.twig') }}
+    <div class="row p-2">
+        <a href="{{ path('episode_edit', {'id': episode.id}) }}"><button class="btn btn-color mr-4"><i class="far fa-edit"></i> edit</button></a>
+        {{ include('episode/_delete_form.html.twig') }}
+    </div>
+    <div>
+        <a href="{{ path('episode_index') }}"><button class="btn m-4 back">Back to list</button></a>
+    </div>
+</div>
 {% endblock %}
