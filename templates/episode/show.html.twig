@@ -4,21 +4,18 @@
 
 {% block body %}
 <div class="container m-4">
-    <h1>Episode</h1>
+    <div class="hr-color"><hr></div>
+    <h1>Episode {{ episode.number }}</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ episode.id }}</td>
+                <th>Season</th>
+                <td>{{ episode.season.number }}</td>
             </tr>
             <tr>
                 <th>Title</th>
                 <td>{{ episode.title }}</td>
-            </tr>
-            <tr>
-                <th>Number</th>
-                <td>{{ episode.number }}</td>
             </tr>
             <tr>
                 <th>Synopsis</th>

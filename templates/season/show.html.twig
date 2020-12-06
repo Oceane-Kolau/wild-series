@@ -3,18 +3,12 @@
 {% block title %}Season{% endblock %}
 
 {% block body %}
-    <h1>Season</h1>
+<div class="container m-4">
+    <div class="hr-color"><hr></div>
+    <h1>Season  {{ season.number }}</h1>
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ season.id }}</td>
-            </tr>
-            <tr>
-                <th>Number</th>
-                <td>{{ season.number }}</td>
-            </tr>
             <tr>
                 <th>Year</th>
                 <td>{{ season.year }}</td>
@@ -25,10 +19,12 @@
             </tr>
         </tbody>
     </table>
-
-    <a href="{{ path('season_index') }}">back to list</a>
-
-    <a href="{{ path('season_edit', {'id': season.id}) }}">edit</a>
-
-    {{ include('season/_delete_form.html.twig') }}
+    <div class="row p-2">
+        <a href="{{ path('season_edit', {'id': season.id}) }}"><button class="btn btn-color mr-4"><i class="far fa-edit"></i> edit</button></a>
+        {{ include('season/_delete_form.html.twig') }}
+    </div>
+    <div>
+        <a href="{{ path('season_index') }}"><button class="btn m-4 back">Back to list</button></a>
+    </div>
+</div>
 {% endblock %}

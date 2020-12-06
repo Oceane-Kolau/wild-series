@@ -3,9 +3,9 @@
 {% block title %}New Episode{% endblock %}
 
 {% block body %}
-    <h1>Create new Episode</h1>
-
+<div class="container mt-5">
+    <h1>Create new Episode</h1> <div class="hr-color"><hr></div>
     {{ include('episode/_form.html.twig') }}
-
-    <a href="{{ path('episode_index') }}">back to list</a>
+    <a href="{{ path('episode_index') }}"><button class="btn back">back to list</button></a>
+</div>
 {% endblock %}
