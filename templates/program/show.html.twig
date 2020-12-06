@@ -1,0 +1,42 @@
+{% include 'base.html.twig' %}
+
+<body>
+   <div class="container m-2 mt-5">
+      <h1 class="text-center h1-style">{{program.title}}
+         <hr class="hr-color">
+      </h1>
+      <h5 class="card-text text-center"><i class="fas fa-film film-color"></i> {{program.category.name}}</h5>
+      <div class="row">
+         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 pt-3 ">
+            <hr class="hr-color">
+            <img class="mr-3 img-fluid" src="{{program.poster}}" alt="{{ program.title }}" />
+         </div>
+         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 pt-3 pt-5">
+            <div>
+               <p class="card-text text-left">{{program.summary}}</p>
+               {% for season in seasons %}
+               <ul class="list-group m-2 p-2 categories-color">
+                  <a href="{{ path("program_season_show", {'program_id': program.id, 'season_id': season.id}) }}">
+                     <li class="list-group-item list-group-item-color"> Season {{season.number}} - {{season.year}}</li>
+                  </a>
+               </ul>
+               {% endfor %}
+               <h3 class="pt-3">Acteurs</h3>
+               <ul>
+                  {% for actor in program.actors %}
+                  <li class="color-actor"><a href="{{ path('actor_show', {'id': actor.id}) }}"> .  {{ actor.name }}</li>
+                  {% else %}
+                  <li>Aucun acteur pour cette série</li>
+                  {% endfor %}
+               </ul>
+            </div>
+         </div>
+      </div>
+      <div class="mt-5">
+         <a href="{{ path('program_index') }}"><button class="btn btn-color">Retour à la liste des programmes
+            </button></a>
+      </div>
+   </div>
+</body>
+
+</html>

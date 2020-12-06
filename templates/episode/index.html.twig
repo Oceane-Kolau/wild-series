@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Episode index{% endblock %}
+
+{% block body %}
+<div class="container m-4">
+    <div class="hr-color"><hr></div>
+    <div class="row">
+        <div class="col-lg-9 col-md-8 col-sm-6 col-xs-6">
+            <h1>Episode index</h1>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 pb-2">
+            <a href="{{ path('episode_new') }}"><button class="btn btn-color ml-5">Create new episode</button></a> 
+        </div>
+    </div>
+
+    <table class="table table-responsive{-sm|-md|-lg|-xl}">
+        <thead>
+            <tr>
+                <th>Program</th>
+                <th>Season</th>
+                <th>Title</th>
+                <th>Number</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for episode in episodes %}
+            <tr>
+                <td>{{ episode.season.program.title }}</td>
+                <td>{{ episode.season.number }}</td>
+                <td>{{ episode.title }}</td>
+                <td>{{ episode.number }}</td>
+                <td>
+                    <a href="{{ path('episode_show', {'id': episode.id}) }}"><p><i class="fas fa-eye icon-color"></i></p></a>
+                    <a href="{{ path('episode_edit', {'id': episode.id}) }}"><p><i class="far fa-edit icon-color"></i></p></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
