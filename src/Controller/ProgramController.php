@@ -32,7 +32,7 @@ class ProgramController extends AbstractController
     /**
      * The controller for the category add form
      *
-     * @Route("/new", name="new")
+     * @Route("/new", methods={"GET", "POST"}, name="new")
      */
     public function new(Request $request) : Response
     {
@@ -43,7 +43,7 @@ class ProgramController extends AbstractController
         // Get data from HTTP request
         $form->handleRequest($request);
         // Was the form submitted ?
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             // Deal with the submitted data
             // Get the Entity Manager
             $entityManager = $this->getDoctrine()->getManager();
