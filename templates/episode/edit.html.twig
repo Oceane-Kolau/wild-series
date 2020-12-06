@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Episode{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="hr-color"><hr></div>
+    <h1>Edit Episode</h1>
+
+    {{ include('episode/_form.html.twig', {'button_label': 'Update'}) }}
+    <div class="row pl-5 ml-5">
+        <a href="{{ path('episode_index') }}"><button class="btn back mr-2 ml-5">Back to list</button></a>
+        {{ include('episode/_delete_form.html.twig') }}
+    </div>
+
+</div>
+{% endblock %}

@@ -1,20 +1,27 @@
 {% include 'base.html.twig' %}
 
 <body>
-<div class="container mt-5 mx-auto">
-   <h2 class="text-center">Saison {{ season.number }} - {{ program.title}}<hr class="hr-color"></h2>
-   <div class="media">
-      <img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
-      <div class="media-body">
-         <p><span class="color-episod">Episode {{episode.number}}</span> <br> {{episode.title}} <br></p>
-         <p>{{episode.synopsis}}</p>
+   <div class="container mt-5 mx-auto">
+      <h2 class="text-center">Saison {{ season.number }} - {{ program.title}}
+         <hr class="hr-color">
+      </h2>
+      <div class="row">
+         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 pt-3 ">
+            <img class="mr-3 img-fluid" src="{{program.poster}}" alt="{{ program.title }} poster">
+         </div>
+         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 pt-3 pt-5">
+            <div>
+               <p><span class="color-episod">Episode {{episode.number}}</span> <br> {{episode.title}} <br></p>
+               <p>{{episode.synopsis}}</p>
+            </div>
+         </div>
+      </div>
+      <div class="mt-5 mb-5">
+         <a href="{{ path("program_season_show", {'program_id': program.id, 'season_id': season.id}) }}"><button
+               class="btn btn-color">Retour à la liste des épisodes de la saison {{season.number}} de {{program.title}}
+            </button></a>
       </div>
    </div>
-   <div class="mt-5 mb-5">
-      <a href="{{ path("program_season_show", {'program_id': program.id, 'season_id': season.id}) }}"><button class="btn btn-color">Retour à la liste des épisodes de la saison {{season.number}} de {{program.title}}
-         </button></a>
-   </div>
-</div>
 </body>
 
 </html>
