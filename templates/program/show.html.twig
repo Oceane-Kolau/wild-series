@@ -19,8 +19,16 @@
                   <a href="{{ path("program_season_show", {'program_id': program.id, 'season_id': season.id}) }}">
                      <li class="list-group-item list-group-item-color"> Season {{season.number}} - {{season.year}}</li>
                   </a>
-                  </ul>
+               </ul>
                {% endfor %}
+               <h3 class="pt-3">Acteurs</h3>
+               <ul>
+                  {% for actor in program.actors %}
+                  <li class="color-actor"><a href="{{ path('actor_show', {'id': actor.id}) }}"> .  {{ actor.name }}</li>
+                  {% else %}
+                  <li>Aucun acteur pour cette série</li>
+                  {% endfor %}
+               </ul>
             </div>
          </div>
       </div>
