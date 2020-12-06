@@ -182,3 +182,15 @@ tr {
 .icon-color {
     color: var(--gold);
 }
+
+.color-actor a{
+    color: white;
+}
+
+.color-actor a:hover{
+    color: var(--gold);
+}
+
+li {
+    list-style: none;
+}
