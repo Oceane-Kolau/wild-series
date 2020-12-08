@@ -15,7 +15,6 @@
                <p class="card-text text-left">{{ season.description }}</p>
                {% for episode in episodes %}
                <p><span class="color-episod">Episode {{episode.number}}</span> <br> {{episode.title}} <br></p>
-               <p>{{episode.synopsis}}</p>
                <a
                   href="{{ path("program_episode_show", {'program_id': program.id, 'season_id': season.id, 'episode_id': episode.id}) }}"><button
                      class="btn btn-color mb-5">Voir cet épisode
