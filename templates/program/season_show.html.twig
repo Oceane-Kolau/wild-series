@@ -16,7 +16,7 @@
                {% for episode in episodes %}
                <p><span class="color-episod">Episode {{episode.number}}</span> <br> {{episode.title}} <br></p>
                <a
-                  href="{{ path("program_episode_show", {'program_id': program.id, 'season_id': season.id, 'episode_id': episode.id}) }}"><button
+                  href="{{ path("program_episode_show", {'programSlug': program.slug, 'season_id': season.id, 'episodeSlug': episode.slug}) }}"><button
                      class="btn btn-color mb-5">Voir cet épisode
                   </button></a>
                {% endfor %}
@@ -24,7 +24,7 @@
          </div>
       </div>
       <div class="mt-5">
-         <a href="{{ path("program_show", { id: program.id }) }}"><button class="btn btn-color">Retour à la liste des
+         <a href="{{ path('program_show', {'slug': program.slug, 'season_id': season.id}) }}"><button class="btn btn-color">Retour à la liste des
                saisons
             </button></a>
       </div>

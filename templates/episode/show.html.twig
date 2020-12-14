@@ -24,7 +24,7 @@
         </tbody>
     </table>
     <div class="row p-2">
-        <a href="{{ path('episode_edit', {'id': episode.id}) }}"><button class="btn btn-color mr-4"><i class="far fa-edit"></i> edit</button></a>
+        <a href="{{ path('episode_edit', {'slug': episode.slug}) }}"><button class="btn btn-color mr-4"><i class="far fa-edit"></i> edit</button></a>
         {{ include('episode/_delete_form.html.twig') }}
     </div>
     <div>
