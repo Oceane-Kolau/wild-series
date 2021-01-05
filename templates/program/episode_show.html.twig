@@ -1,26 +1,51 @@
 {% include 'base.html.twig' %}
 
-<body>
-   <div class="container mt-5 mx-auto">
-      <h2 class="text-center">Saison {{ season.number }} - {{ program.title}}
-         <hr class="hr-color">
-      </h2>
-      <div class="row">
-         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 pt-3 ">
+{% block body %}
+<div class="container mt-5 mx-auto">
+    <h2 class="text-center">Saison {{ season.number }} - {{ program.title}}
+        <hr class="hr-color">
+    </h2>
+    <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 pt-3 ">
             <img class="mr-3 img-fluid" src="{{program.poster}}" alt="{{ program.title }} poster">
-         </div>
-         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 pt-3 pt-5">
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 pt-3 pt-5">
             <div>
-               <p><span class="color-episod">Episode {{episode.number}}</span> <br> {{episode.title}} <br></p>
-               <p>{{episode.synopsis}}</p>
+                <p><span class="color-episod">Episode {{episode.number}}</span> <br> {{episode.title}} <br></p>
+                <p>{{episode.synopsis}}</p>
             </div>
-         </div>
-      </div>
-      <div class="mt-5 mb-5">
-         <a href="{{ path("program_season_show", {'programSlug': program.slug, 'season_id': season.id}) }}"><button
-               class="btn btn-color">Retour à la liste des épisodes de la saison {{season.number}} de {{program.title}}
+        </div>
+    </div>
+    <h5 class="mt-5">Commentaires sur cet épisode </h5>
+    <hr class="hr-color">
+    {% if comments == true %}
+    <div class="card card-color" style="width: 35rem;">
+        <ul class="">
+            {% for comment in comments %}
+            <li class=" m-2">
+                <p>Note {{ comment.rate }}/ 5 - Autheur : {{ comment.author.email }}</p>
+                <p>{{ comment.comment }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% if app.user %}
+    <h5 class="mt-5">Poster un nouveau commentaire</h5>
+    <hr class="hr-color">
+    {{ form_start(form) }}
+    <p>Commentaire <br>
+        {{ form_widget(form.comment) }}</p>
+    <p>Note (entre 0 et 5) :
+        {{ form_widget(form.rate) }}</p>
+    <button class="btn btn-color">{{ button_label|default('Publier') }}</button>
+    {{ form_end(form) }}
+    {% endif %}
+
+    <div class="mt-5 mb-5">
+        <a href="{{ path("program_season_show", {'programSlug': program.slug, 'season_id' : season.id}) }}"><button
+                class="btn btn-color">Retour à la liste des épisodes de la saison {{season.number}} de {{program.title}}
             </button></a>
-      </div>
-   </div>
-</body>
-</html>
+    </div>
+</div>
+{% endblock %}
