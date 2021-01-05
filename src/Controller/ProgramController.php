@@ -2,6 +2,7 @@
 // src/Controller/ProgramController.php
 namespace App\Controller;
 
+use App\Entity\Comment;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,9 +12,12 @@ use App\Repository\ProgramRepository;
 use App\Entity\Season;
 use App\Entity\Episode;
 use App\Entity\Program;
+use App\Form\CommentType;
 use App\Form\ProgramType;
 use App\Service\Slugify;
-
+use Symfony\Component\Finder\Exception\AccessDeniedException;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 /**
 * @Route("/programs", name="program_")
@@ -33,29 +37,30 @@ class ProgramController extends AbstractController
     /**
      * @Route("/new", methods={"GET", "POST"}, name="new")
      */
-    public function new(Request $request, Slugify $slugify) : Response
+    public function new(Request $request, Slugify $slugify, MailerInterface $mailer) : Response
     {
-        // Create a new Category Object
         $program= new Program();
-        // Create the associated Form
         $form = $this->createForm(ProgramType::class, $program);
-        // Get data from HTTP request
         $form->handleRequest($request);
-        // Was the form submitted ?
         if ($form->isSubmitted() && $form->isValid()) {
-            // Deal with the submitted data
-            // Get the Entity Manager
             $entityManager = $this->getDoctrine()->getManager();
             $slug = $slugify->generate($program->getTitle());
+            $program->setOwner($this->getUser());
             $program->setSlug($slug);
-            // Persist Category Object
             $entityManager->persist($program);
-            // Flush the persisted object
             $entityManager->flush();
-            // Finally redirect to categories list
+            $this->addFlash('success', 'La série a bien été ajoutée');
+
+            $email = (new Email())
+                    ->from($this->getParameter('mailer_from'))
+                    ->to($this->getParameter('mailer_to'))
+                    ->subject('Une nouvelle série vient d\'être publiée !')
+                    ->html($this->renderView('Program/newProgramEmail.html.twig', ['program' => $program]));
+        
+            $mailer->send($email);
             return $this->redirectToRoute('program_index');
         }
-        // Render the form
+
         return $this->render('program/new.html.twig', ["form" => $form->createView()]);
     }
 
@@ -71,7 +76,6 @@ class ProgramController extends AbstractController
             'No program with id : '.$program.' found in program\'s table.'
         );
         }
-        
         $seasons = $program->getSeasons();
         return $this->render('program/show.html.twig', [
             'program' => $program,
@@ -96,18 +100,80 @@ class ProgramController extends AbstractController
     }
 
     /**
-     * @Route("/{programSlug}/seasons/{season_id}/episodes/{episodeSlug}", methods={"GET"}, name="episode_show")
+     * @Route("/{programSlug}/seasons/{season_id}/episodes/{episodeSlug}", methods={"GET", "POST"}, name="episode_show")
      * @ParamConverter("program", class="App\Entity\Program", options={"mapping": {"programSlug": "slug"}})
      * @ParamConverter("season", class="App\Entity\Season", options={"mapping": {"season_id": "id"}})
      * @ParamConverter("episode", class="App\Entity\Episode", options={"mapping": {"episodeSlug": "slug"}})
      */
-    public function showEpisode(Program $program, Season $season, Episode $episode): Response
+    public function showEpisode(Program $program, Season $season, Episode $episode, Request $request): Response
     {
+        $user = $this->getUser();
+        $comment = new Comment();
+        $comment->setAuthor($user);
+        $comment->setEpisode($episode);
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($comment);
+            $entityManager->flush();
+            return $this->redirect($request->server->get('HTTP_REFERER'));
+        }
+        $comments = $this->getDoctrine()
+        ->getRepository(Comment::class)
+        ->findBy(
+            ['episode' => $episode], 
+            ['id' => 'DESC'],
+            3
+        );
+
         return $this->render('program/episode_show.html.twig', [
             'program' => $program,
             'season' => $season,
             'episode' => $episode,
+            'comments' => $comments,
+            'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/{slug}/edit", name="edit", methods={"GET","POST"})
+     * @ParamConverter("program", class="App\Entity\Program", options={"mapping": {"slug": "slug"}})
+     */
+    public function edit(Request $request, Program $program): Response
+    {
+        if (!($this->getUser() == $program->getOwner())) {
+            // If not the owner, throws a 403 Access Denied exception
+            throw new AccessDeniedException('Only the owner can edit the program!');
+        }
+        $form = $this->createForm(ProgramType::class, $program);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('program_index');
+        }
+
+        return $this->render('program/edit.html.twig', [
+            'program' => $program,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("comments/{id}", name="comment_delete", methods={"DELETE"})
+     */
+    public function deleteComment(Request $request, Comment $comment): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$comment->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($comment);
+            $entityManager->flush();
+        }
+
+        return $this->redirect($request->server->get('HTTP_REFERER'));
     }
 
 }

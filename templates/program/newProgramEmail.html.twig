@@ -1,0 +1,7 @@
+{% extends 'layout_email.html.twig' %}
+{% block title %}Nouvel épisode{% endblock %}
+{% block body %}
+    <h1>La série "{{ program.title }}" vient de sortir 🍿</h1>
+    <p>👉 Pour voir {{ program.title }}, connectez-vous à votre compte Wild Series</p>
+    <p>Résumé du programme: {{program.summary }}.
+{% endblock %}

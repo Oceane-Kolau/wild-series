@@ -87,6 +87,8 @@ class SeasonController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($season);
             $entityManager->flush();
+
+            $this->addFlash('danger', 'The season has been deleted');
         }
 
         return $this->redirectToRoute('season_index');
