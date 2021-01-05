@@ -5,9 +5,10 @@
     <a class="nav-item nav-size pl-4" href="{{ path('category_index')}}">Categories</a>
     {% if app.user %}
     <a class="nav-item nav-size pl-4">{{ app.user.email }}</a>
-    <a class="nav-item nav-size pl-4" href="{{ path('app_logout') }}"> Se déconnecter</a>
+    <a class="nav-item nav-size pl-4" href="{{ path('app_logout') }}"> Déconnexion</a>
     {% else %}
-    <a class="nav-item nav-size pl-4" href="{{ path('app_login') }}"> Se connecter</a>
+    <a class="nav-item nav-size pl-4" href="{{ path('app_login') }}"> Connexion</a>
+    <a class="nav-item nav-size pl-4" href="{{ path('app_register') }}"> Inscription</a>
     {% endif %}
 
     {# <div class="collapse navbar-collapse" id="navbarNav">
