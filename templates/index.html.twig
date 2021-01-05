@@ -19,10 +19,10 @@
       {% for program in programs %}
       <div class="text-center p-5">
          <div class="scroll-card" style="width: 15rem;">
-            <a href="{{ path("program_show", { id: program.id }) }}">
+            <a href="{{ path("program_show", { slug: program.slug }) }}">
             <img src="{{program.poster}}" class="box-program" alt="..."></a>
             <div class="card-body link-effect">
-               <a href="{{ path("program_show", { id: program.id }) }}">
+               <a href="{{ path("program_show", { slug: program.slug }) }}">
                <p class="card-text text-center"><i class="fas fa-film film-color"></i>  {{program.category.name}}</p><br><br>
                <h5 class="card-title">{{program.title}}</h5></a>
             </div>

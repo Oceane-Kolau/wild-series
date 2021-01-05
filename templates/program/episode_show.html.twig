@@ -17,11 +17,10 @@
          </div>
       </div>
       <div class="mt-5 mb-5">
-         <a href="{{ path("program_season_show", {'program_id': program.id, 'season_id': season.id}) }}"><button
+         <a href="{{ path("program_season_show", {'programSlug': program.slug, 'season_id': season.id}) }}"><button
                class="btn btn-color">Retour à la liste des épisodes de la saison {{season.number}} de {{program.title}}
             </button></a>
       </div>
    </div>
 </body>
-
 </html>
