@@ -25,6 +25,11 @@
             <li class=" m-2">
                 <p>Note {{ comment.rate }}/ 5 - Autheur : {{ comment.author.email }}</p>
                 <p>{{ comment.comment }}</p>
+                {% if app.user %}
+                    {% if is_granted("ROLE_ADMIN") or app.user.email == comment.author.email %}
+                        {{ include('program/comment_delete_form.html.twig') }}
+                    {% endif %}
+                {% endif %}
             </li>
             {% endfor %}
         </ul>
