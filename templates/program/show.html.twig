@@ -12,11 +12,11 @@
             <img class="mr-3 img-fluid" src="{{program.poster}}" alt="{{ program.title }}" />
          </div>
          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 pt-3 pt-5">
+            <p class="card-text text-left">{{program.summary}}</p>
             <div>
-               <p class="card-text text-left">{{program.summary}}</p>
-               {% for season in seasons %}
+            {% for season in seasons %}
                <ul class="list-group m-2 p-2 categories-color">
-                  <a href="{{ path("program_season_show", {'programSlug': program.slug, 'season_id': season.id}) }}">
+                  <a href="{{ path("program_season_show", {'programSlug': program.slug, 'season_id' : season.id}) }}">
                      <li class="list-group-item list-group-item-color"> Season {{season.number}} - {{season.year}}</li>
                   </a>
                </ul>
@@ -24,7 +24,7 @@
                <h3 class="pt-3">Acteurs</h3>
                <ul>
                   {% for actor in program.actors %}
-                  <li class="color-actor"><a href="{{ path('actor_show', {'id': actor.id}) }}"> .  {{ actor.name }}</li>
+                  <li class="color-actor"><a href="{{ path('actor_show', {'id': actor.id}) }}"> . {{ actor.name }}</li>
                   {% else %}
                   <li>Aucun acteur pour cette série</li>
                   {% endfor %}

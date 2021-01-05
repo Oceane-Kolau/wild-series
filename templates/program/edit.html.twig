@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edition série{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="hr-color">
+        <hr>
+    </div>
+    <h1>Edit Program</h1>
+    {{ include('program/_form.html.twig', {'button_label': 'Modifier'}) }}
+    <div class="row pl-5 ml-5">
+        <a href="{{ path('program_index') }}">
+            <button class="btn back mr-2 ml-5 mb-3">retour
+            </button>
+        </a>
+    </div>
+
+</div>
+{% endblock %}
