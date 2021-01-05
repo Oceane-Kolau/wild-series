@@ -13,7 +13,8 @@ use App\Entity\Episode;
 use App\Entity\Program;
 use App\Form\ProgramType;
 use App\Service\Slugify;
-
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 /**
 * @Route("/programs", name="program_")
@@ -33,29 +34,29 @@ class ProgramController extends AbstractController
     /**
      * @Route("/new", methods={"GET", "POST"}, name="new")
      */
-    public function new(Request $request, Slugify $slugify) : Response
+    public function new(Request $request, Slugify $slugify, MailerInterface $mailer) : Response
     {
-        // Create a new Category Object
         $program= new Program();
-        // Create the associated Form
         $form = $this->createForm(ProgramType::class, $program);
-        // Get data from HTTP request
         $form->handleRequest($request);
-        // Was the form submitted ?
         if ($form->isSubmitted() && $form->isValid()) {
-            // Deal with the submitted data
-            // Get the Entity Manager
             $entityManager = $this->getDoctrine()->getManager();
             $slug = $slugify->generate($program->getTitle());
             $program->setSlug($slug);
-            // Persist Category Object
             $entityManager->persist($program);
-            // Flush the persisted object
             $entityManager->flush();
-            // Finally redirect to categories list
+            $this->addFlash('success', 'La série a bien été ajoutée');
+
+            $email = (new Email())
+                    ->from($this->getParameter('mailer_from'))
+                    ->to($this->getParameter('mailer_to'))
+                    ->subject('Une nouvelle série vient d\'être publiée !')
+                    ->html($this->renderView('Program/newProgramEmail.html.twig', ['program' => $program]));
+        
+            $mailer->send($email);
             return $this->redirectToRoute('program_index');
         }
-        // Render the form
+
         return $this->render('program/new.html.twig', ["form" => $form->createView()]);
     }
 
