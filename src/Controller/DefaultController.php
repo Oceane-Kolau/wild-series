@@ -18,4 +18,16 @@ class DefaultController extends AbstractController
             'programs' => $programRepository->findAll(), 
         ]);
     }
+
+    /**
+     * @Route("/my-profile", name="app_profile", methods={"GET"})
+     */
+    public function profile(): Response
+    {
+        $user = $this->getUser();
+
+        return $this->render('myProfile.html.twig', [
+            'user' => $user
+        ]);
+    }
 }
